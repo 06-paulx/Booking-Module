@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/:listingID', (req, res) => {
+  console.log('in get');
   db.getListing(req.params.listingID, (err, data) => {
     res.json(JSON.stringify(data));
   })

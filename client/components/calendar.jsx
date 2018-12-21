@@ -39,12 +39,18 @@ export default class Calendar extends React.Component {
 
     handleDates(month, year) {
         var daysAvailable = [...Array(this.days[this.months.indexOf(month)])].map((i, index) => index + 1);
+        var monthIndex = this.months.indexOf(month) + 1;
+      
         var bookingsThisMonth = this.dates.filter(date => {
-            var monthIndex = this.months.indexOf(month) + 1;
-            return (date.endMonth === monthIndex && date.endYear === year) || (date.endMonth === monthIndex && date.endYear === year);
+            return ((date.endMonth === monthIndex && date.endYear === year) || (date.startMonth === monthIndex && date.startYear === year));
         })
         bookingsThisMonth.forEach(booking => {
             daysAvailable = daysAvailable.filter(day => {
+                if (booking.startMonth !== monthIndex) {
+                    return day >= booking.endDay;
+                } else if (booking.endMonth !== monthIndex) {
+                    return day < booking.startDay;
+                }
                 return (day < booking.startDay) || (day >= booking.endDay);
             })
         })
