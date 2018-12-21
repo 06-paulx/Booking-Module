@@ -24,7 +24,7 @@ CREATE TABLE listings (
   PRIMARY KEY (id)
 );
 
-INSERT INTO listings (price, rating, reviewCount) VALUES (200, 5, 389);
+INSERT INTO listings (price, rating, reviewCount) VALUES (200, 3, 389);
 
 INSERT into bookings (startDate, endDate, listingID, adults, children, infants, userID) VALUES ('2019-01-01', '2019-01-10', 1, 2, 1, 0, 1);
 INSERT into bookings (startDate, endDate, listingID, adults, children, infants, userID) VALUES ('2019-01-14', '2019-01-18', 1, 1, 2, 0, 1);

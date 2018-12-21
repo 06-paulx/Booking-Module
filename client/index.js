@@ -1,3 +1,5 @@
-import Calendar from './components/calendar.jsx';
+import Booking from './components/booking.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-window.Calendar = Calendar;
+ReactDOM.render(<Booking />, document.getElementById('booking'));

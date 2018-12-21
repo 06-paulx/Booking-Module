@@ -19,3 +19,7 @@ app.get('/:listingID', (req, res) => {
     res.json(JSON.stringify(data));
   })
 })
+
+app.get('/:listingID/bookings', (req, res) => {
+  
+})
