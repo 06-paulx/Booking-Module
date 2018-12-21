@@ -21,5 +21,9 @@ app.get('/:listingID', (req, res) => {
 })
 
 app.get('/:listingID/bookings', (req, res) => {
-  
+  console.log('in bookings');
+  db.getBookings(req.params.listingID, (err, data) => {
+    console.log('in callback', data);
+    res.json(JSON.stringify(data));
+  })
 })

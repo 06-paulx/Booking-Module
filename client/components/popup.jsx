@@ -23,16 +23,7 @@ export default class Popup extends React.Component {
         this.handleNumGuestsClick = this.handleNumGuestsClick.bind(this);
         this.updateNumGuests = this.updateNumGuests.bind(this);
     }
-
-    componentDidMount() {
-        document.addEventListener('click', this.handleClickOutside.bind(this));
-    }
-
-    handleClickOutside(event) {
-        console.log(this.pop);
-        console.log(event.target);
-    }
-
+ 
     handleCalendarClick(e) {
         e.preventDefault();
         if(this.state.calendarShow === 'block') {

@@ -9,15 +9,46 @@ export default class Calendar extends React.Component {
             start: 6,
             days: 31,
             month: 'December',
-            year: 2018
+            year: 2018,
+            daysAvailable: [],
         }
+        this.dates = [];
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         this.days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        this.handleDates = this.handleDates.bind(this);
         this.populateDate = this.populateDate.bind(this);
         this.leftArrowClick = this.leftArrowClick.bind(this);
         this.rightArrowClick = this.rightArrowClick.bind(this);
         this.leftArrow = "M336.2 274.5l-210.1 210h805.4c13 0 23 10 23 23s-10 23-23 23H126.1l210.1 210.1c11 11 11 21 0 32-5 5-10 7-16 7s-11-2-16-7l-249.1-249c-11-11-11-21 0-32l249.1-249.1c21-21.1 53 10.9 32 32z";
         this.rightArrow = "M694.4 242.4l249.1 249.1c11 11 11 21 0 32L694.4 772.7c-5 5-10 7-16 7s-11-2-16-7c-11-11-11-21 0-32l210.1-210.1H67.1c-13 0-23-10-23-23s10-23 23-23h805.4L662.4 274.5c-21-21.1 11-53.1 32-32.1z";
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3010/1/bookings', {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            this.dates = JSON.parse(data);
+            this.handleDates(this.state.month, this.state.year);
+        });
+    }
+
+    handleDates(month, year) {
+        var daysAvailable = [...Array(this.days[this.months.indexOf(month)])].map((i, index) => index + 1);
+        var bookingsThisMonth = this.dates.filter(date => {
+            var monthIndex = this.months.indexOf(month) + 1;
+            return (date.endMonth === monthIndex && date.endYear === year) || (date.endMonth === monthIndex && date.endYear === year);
+        })
+        bookingsThisMonth.forEach(booking => {
+            daysAvailable = daysAvailable.filter(day => {
+                return (day < booking.startDay) || (day >= booking.endDay);
+            })
+        })
+        this.setState({daysAvailable: daysAvailable});
     }
 
     leftArrowClick(e) {
@@ -36,6 +67,7 @@ export default class Calendar extends React.Component {
             start = (this.state.start + 7 * 5 - 29 ) % 7
         }
         this.setState({start: start, month: newMonth, year: newYear, days: newDays});
+        this.handleDates(newMonth, newYear);
     }
 
     rightArrowClick(e) {
@@ -57,6 +89,7 @@ export default class Calendar extends React.Component {
             }
         }
         this.setState({start: start, month: newMonth, year: newYear, days: newDays});
+        this.handleDates(newMonth, newYear);
     }
 
     populateDate(e) {
@@ -91,7 +124,7 @@ export default class Calendar extends React.Component {
                         )
                     })}
                     {[...Array(this.state.days + this.state.start > 35 ? 42 : 35)].map((item, index) => {
-                        return (<CalendarDate key = {index} number = {index - this.state.start + 1} days = {this.state.days} populateDate = {this.populateDate}/>)
+                        return (<CalendarDate daysAvailable = {this.state.daysAvailable} key = {index} number = {index - this.state.start + 1} days = {this.state.days} populateDate = {this.populateDate}/>)
                     })}               
                 </div>
                 <div className = 'right-align' style = {{marginRight: '10px'}}>

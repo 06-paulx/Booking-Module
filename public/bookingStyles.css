@@ -48,10 +48,9 @@
 
 .calendar-block {
     position: absolute;
-    max-width: 328px;
     background-color: rgb(255, 255, 255);
-    width: 31%;
-    height: 40vh;
+    width: 328px;
+    height: 346px;
     box-shadow: rgba(0,0,0,.2) 0px 1px 10px 0px;
     margin: 12px 0 0 0;
     z-index: 1;
@@ -101,6 +100,10 @@
 
 .flexbox {
     display: flex;
+}
+
+.grey {
+    opacity: .5;
 }
 
 .grid {
