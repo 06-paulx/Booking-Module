@@ -28,7 +28,6 @@ export default class Booking extends React.Component {
     .then(data => {
       data = JSON.parse(data)[0];
       this.setState({price: data.price, rating: data.rating, reviewCount: data.reviewCount});
-      this.handleButtonClick();
     });
   }
 

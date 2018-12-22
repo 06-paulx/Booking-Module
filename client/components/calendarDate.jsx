@@ -15,7 +15,7 @@ export default class CalendarDate extends React.Component {
         <div className = 'grid-item'>
             {this.props.daysAvailable.includes(this.props.number) 
             ? 
-            <button className = 'calendar-item' onClick = {this.props.populateDate}>
+            <button className = 'calendar-item bold' onClick = {this.props.populateDate}>
                 {this.props.number > 0 && this.props.number <= this.props.days ? this.props.number : ''}
             </button>
             :

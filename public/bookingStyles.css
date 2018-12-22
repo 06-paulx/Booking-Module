@@ -102,6 +102,10 @@
     display: flex;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .grey {
     opacity: .5;
     text-decoration: line-through;

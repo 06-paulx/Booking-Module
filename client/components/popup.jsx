@@ -11,7 +11,7 @@ export default class Popup extends React.Component {
             adults: 1,
             children: 0,
             infants: 0,
-            calendarShow: 'block',
+            calendarShow: 'none',
             checkIn: '',
             checkOut: ''
         }
@@ -31,7 +31,9 @@ export default class Popup extends React.Component {
         } else {
             this.setState({calendarShow: 'block'})
         }
-        
+        if ((this.state.checkIn !== '') && (this.state.checkOut === '')) {
+            this.setState({checkIn: '', checkOut: ''})
+        }        
     }
 
     handleClick(e) {
@@ -120,7 +122,7 @@ export default class Popup extends React.Component {
                         <input value = {this.state.checkOut} onClick = {this.handleCalendarClick} className = 'check-in' name = 'checkout' type="text" placeholder = 'Check Out'/>
                     </div>
                     <div style = {{display: this.state.calendarShow}}>
-                        <Calendar checkIn = {this.state.checkIn} id = {this.props.id} populateDate = {this.populateDate}/>
+                        <Calendar checkOut = {this.state.checkOut} checkIn = {this.state.checkIn} id = {this.props.id} populateDate = {this.populateDate}/>
                     </div>
                     <div className = 'margin-top'>Guests</div>
                     <div style = {{position: 'relative'}}><input value = {this.state.numGuests} onClick = {this.handleClick} className = 'guests' type="text" name = 'guests' placeholder = '1 Guest'/>

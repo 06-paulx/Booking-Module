@@ -7,15 +7,18 @@ export default class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            start: 6,
+            start: 2,
             days: 31,
-            month: 'December',
-            year: 2018,
+            month: 'January',
+            year: 2019,
             daysAvailable: [],
+            chosenDates: []
         }
+        this.bothPopulated = false;
         this.dates = [];
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         this.days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        this.fillDates = this.fillDates.bind(this);
         this.handleDates = this.handleDates.bind(this);
         this.populateDate = this.populateDate.bind(this);
         this.leftArrowClick = this.leftArrowClick.bind(this);
@@ -36,6 +39,11 @@ export default class Calendar extends React.Component {
             this.dates = JSON.parse(data);
             this.handleDates(this.state.month, this.state.year);
         });
+    }
+
+    fillDates(text) {
+    
+    
     }
 
     handleDates(month, year) {
@@ -75,6 +83,9 @@ export default class Calendar extends React.Component {
         }
         this.setState({start: start, month: newMonth, year: newYear, days: newDays});
         this.handleDates(newMonth, newYear);
+        if (this.props.checkOut === '' && this.props.checkIn !== '') {
+            this.props.populateDate('checkIn');
+        }
     }
 
     rightArrowClick(e) {
@@ -95,6 +106,22 @@ export default class Calendar extends React.Component {
                 start = (this.state.start + 29) % 7;
             }
         }
+
+        if (this.props.checkOut === '' && this.props.checkIn !== '') {
+            var checkInDay = Number(this.props.checkIn.split('/')[1]);
+            var daysLeft = this.state.daysAvailable.length - this.state.daysAvailable.indexOf(checkInDay);
+            var daysRemaining = this.days[this.months.indexOf(this.state.month)] - checkInDay + 1;
+            if (daysLeft !== daysRemaining) {
+                this.props.populateDate('checkIn');
+            }
+        } else if (this.props.checkOut !== '' && this.props.checkIn !== '') {
+            var checkInDay = Number(this.props.checkIn.split('/')[1]);
+            var daysLeft = this.state.daysAvailable.length - this.state.daysAvailable.indexOf(checkInDay);
+            var daysRemaining = this.days[this.months.indexOf(this.state.month)] - checkInDay + 1;
+            if (daysLeft !== daysRemaining) {
+                this.bothPopulated = true;
+            }
+        }
         this.setState({start: start, month: newMonth, year: newYear, days: newDays});
         this.handleDates(newMonth, newYear);
     }
@@ -104,10 +131,12 @@ export default class Calendar extends React.Component {
         if(e.target.innerText === 'Clear dates') {
             this.props.populateDate();
         } else if(e.target.innerText !== '') {
-            if (this.props.checkIn !== '') {
-                var checkInDay = Number(this.props.checkIn.split('/')[1]);
+            if (this.props.checkIn !== '' && this.bothPopulated === false) {
+                var dateArr = this.props.checkIn.split('/');
+                var checkInDay = Number(dateArr[1]);
+                var checkInMonth = Number(dateArr[0]);
                 var checkOutDay = Number(e.target.innerText);
-                if (checkOutDay === this.state.daysAvailable.indexOf(checkOutDay) + 1 || ((checkOutDay > checkInDay) && ((checkOutDay - checkInDay) === (this.state.daysAvailable.indexOf(checkOutDay) - this.state.daysAvailable.indexOf(checkInDay))))) {
+                if ((checkInMonth !== this.months.indexOf(this.state.month)+1) && checkOutDay === this.state.daysAvailable.indexOf(checkOutDay) + 1 || ((this.months[checkInMonth-1] === this.state.month) && (checkOutDay > checkInDay) && ((checkOutDay - checkInDay) === (this.state.daysAvailable.indexOf(checkOutDay) - this.state.daysAvailable.indexOf(checkInDay))))) {
                     this.props.populateDate('checkOut', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
                 } else {
                     this.props.populateDate('checkIn', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
@@ -115,8 +144,10 @@ export default class Calendar extends React.Component {
                 }
             } else {
                 this.props.populateDate('checkIn', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
+                this.props.populateDate('checkOut');
             }
         }  
+        this.bothPopulated = false;
     }
 
     render() {
@@ -142,7 +173,7 @@ export default class Calendar extends React.Component {
                         )
                     })}
                     {[...Array(this.state.days + this.state.start > 35 ? 42 : 35)].map((item, index) => {
-                        return (<CalendarDate daysAvailable = {this.state.daysAvailable} key = {index} number = {index - this.state.start + 1} days = {this.state.days} populateDate = {this.populateDate}/>)
+                        return (<CalendarDate chosenDates = {this.state.chosenDates} daysAvailable = {this.state.daysAvailable} key = {index} number = {index - this.state.start + 1} days = {this.state.days} populateDate = {this.populateDate}/>)
                     })}               
                 </div>
                 <div className = 'right-align' style = {{marginRight: '10px'}}>
