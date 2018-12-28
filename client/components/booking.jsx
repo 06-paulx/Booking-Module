@@ -43,8 +43,12 @@ export default class Booking extends React.Component {
   render() {
     return (
       <div>
-        <button className = 'book-button' onClick = {this.handleButtonClick}>BOOK</button>
-        {this.state.popup}
+        {this.state.popup} 
+        <div className = 'footer'>
+          <div className = 'padded-footer'>
+            <button className = 'book-button' onClick = {this.handleButtonClick}>BOOK</button> 
+          </div>
+        </div>
       </div>
     );
   }

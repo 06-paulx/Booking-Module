@@ -1,6 +1,5 @@
 import React from 'react';
-import CalendarDate from './calendarDate.jsx'
-import { timingSafeEqual } from 'crypto';
+import CalendarDate from './calendarDate.jsx';
 
 
 export default class Calendar extends React.Component {
@@ -14,11 +13,15 @@ export default class Calendar extends React.Component {
             daysAvailable: [],
             chosenDates: []
         }
+        this.chosenStartDates = [];
+        this.chosenStartMonth = '';
+        this.chosenEndDates = [];
+        this.chosenEndMonth = '';
+        this.daysBooked = 0;
         this.bothPopulated = false;
         this.dates = [];
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         this.days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        this.fillDates = this.fillDates.bind(this);
         this.handleDates = this.handleDates.bind(this);
         this.populateDate = this.populateDate.bind(this);
         this.leftArrowClick = this.leftArrowClick.bind(this);
@@ -30,10 +33,7 @@ export default class Calendar extends React.Component {
     componentDidMount() {
         fetch(`http://localhost:3010/${this.props.id}/bookings`, {
         method: 'GET',
-        headers: {
-            'content-type': 'application/json'
-        }
-        })
+        headers: {'content-type': 'application/json'}})
         .then(response => response.json())
         .then(data => {
             this.dates = JSON.parse(data);
@@ -41,15 +41,10 @@ export default class Calendar extends React.Component {
         });
     }
 
-    fillDates(text) {
-    
-    
-    }
-
     handleDates(month, year) {
+        // Takes in booked dates and updates per current calendar month
         var daysAvailable = [...Array(this.days[this.months.indexOf(month)])].map((i, index) => index + 1);
         var monthIndex = this.months.indexOf(month) + 1;
-      
         var bookingsThisMonth = this.dates.filter(date => {
             return ((date.endMonth === monthIndex && date.endYear === year) || (date.startMonth === monthIndex && date.startYear === year));
         })
@@ -68,28 +63,41 @@ export default class Calendar extends React.Component {
 
     leftArrowClick(e) {
         e.preventDefault();
+
+        // Update calendar
         var ind = this.months.indexOf(this.state.month) - 1;
         var newYear = this.state.year;
         if (ind === -1) {
             ind = 11;
-            newYear = this.state.year - 1;
+            newYear = newYear - 1;
         } 
         var start = (this.state.start + 7 * 5 - this.days[ind] ) % 7
         var newMonth = this.months[ind];
         var newDays = this.days[ind];
+
+        //Check for Leap Year
         if (this.state.year % 4 === 0 && ind === 1) {
             newDays = 29;
             start = (this.state.start + 7 * 5 - 29 ) % 7
         }
-        this.setState({start: start, month: newMonth, year: newYear, days: newDays});
-        this.handleDates(newMonth, newYear);
-        if (this.props.checkOut === '' && this.props.checkIn !== '') {
-            this.props.populateDate('checkIn');
+
+        // Reset Check-in & Check-out Inputs
+        if (this.props.checkIn !== '') {
+            if (this.props.checkOut === '') {
+                this.props.populateDate('checkIn');
+            } else {
+                this.bothPopulated = true;
+            }
         }
+
+        this.setState({start: start, month: newMonth, year: newYear, days: newDays, chosenDates: []});
+        this.handleDates(newMonth, newYear);
     }
 
     rightArrowClick(e) {
         e.preventDefault();
+
+        // Update calendar
         var ind = this.months.indexOf(this.state.month) + 1;
         var start = (this.state.start + this.days[ind-1]) % 7;
         var newYear = this.state.year;
@@ -107,43 +115,71 @@ export default class Calendar extends React.Component {
             }
         }
 
-        if (this.props.checkOut === '' && this.props.checkIn !== '') {
-            var checkInDay = Number(this.props.checkIn.split('/')[1]);
-            var daysLeft = this.state.daysAvailable.length - this.state.daysAvailable.indexOf(checkInDay);
-            var daysRemaining = this.days[this.months.indexOf(this.state.month)] - checkInDay + 1;
-            if (daysLeft !== daysRemaining) {
+        // Reset check-in & check-out inputs
+        var checkInDay = Number(this.props.checkIn.split('/')[1]);
+        var daysLeft = this.state.daysAvailable.length - this.state.daysAvailable.indexOf(checkInDay);
+        var daysRemaining = this.days[this.months.indexOf(this.state.month)] - checkInDay + 1;
+        if (daysLeft !== daysRemaining && this.props.checkIn !== '') {
+            if (this.props.checkOut === '') {
                 this.props.populateDate('checkIn');
-            }
-        } else if (this.props.checkOut !== '' && this.props.checkIn !== '') {
-            var checkInDay = Number(this.props.checkIn.split('/')[1]);
-            var daysLeft = this.state.daysAvailable.length - this.state.daysAvailable.indexOf(checkInDay);
-            var daysRemaining = this.days[this.months.indexOf(this.state.month)] - checkInDay + 1;
-            if (daysLeft !== daysRemaining) {
+            } else {
                 this.bothPopulated = true;
             }
         }
-        this.setState({start: start, month: newMonth, year: newYear, days: newDays});
+
+        this.setState({start: start, month: newMonth, year: newYear, days: newDays, chosenDates: []});
         this.handleDates(newMonth, newYear);
     }
 
     populateDate(e) {
         e.preventDefault();
-        if(e.target.innerText === 'Clear dates') {
+        var checkOutMonth = this.months.indexOf(this.state.month) + 1;
+        var dateSelected = e.target.innerText;
+        var currentYear = this.state.year;
+
+        var isValidCheckOut = function() {
+            var checkInArr = this.props.checkIn.split('/');
+            var checkInDay = Number(checkInArr[1]);
+            var checkInMonth = Number(checkInArr[0]);
+            var checkOutDay = Number(dateSelected);    
+            if ((checkInMonth !== checkOutMonth) && checkOutDay === this.state.daysAvailable.indexOf(checkOutDay) + 1) {
+                this.daysBooked = checkOutDay + this.days[checkInMonth - 1] - checkInDay;
+                return true;
+            }
+            if ((checkInMonth === checkOutMonth) && (checkOutDay > checkInDay) && ((checkOutDay - checkInDay) === (this.state.daysAvailable.indexOf(checkOutDay) - this.state.daysAvailable.indexOf(checkInDay)))) {
+                this.daysBooked = checkOutDay - checkInDay;
+                return true;
+            }
+            return false;
+        }
+        
+        if (dateSelected === 'Clear dates') {
+            this.setState({chosenDates: []});
             this.props.populateDate();
-        } else if(e.target.innerText !== '') {
+        } else if (dateSelected !== '') {
             if (this.props.checkIn !== '' && this.bothPopulated === false) {
-                var dateArr = this.props.checkIn.split('/');
-                var checkInDay = Number(dateArr[1]);
-                var checkInMonth = Number(dateArr[0]);
-                var checkOutDay = Number(e.target.innerText);
-                if ((checkInMonth !== this.months.indexOf(this.state.month)+1) && checkOutDay === this.state.daysAvailable.indexOf(checkOutDay) + 1 || ((this.months[checkInMonth-1] === this.state.month) && (checkOutDay > checkInDay) && ((checkOutDay - checkInDay) === (this.state.daysAvailable.indexOf(checkOutDay) - this.state.daysAvailable.indexOf(checkInDay))))) {
-                    this.props.populateDate('checkOut', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
+                if (isValidCheckOut.call(this)) {
+                    this.props.populateDate('checkOut', dateSelected, checkOutMonth, currentYear, this.daysBooked);
+                    var num = Number(dateSelected);
+                    var dates = [];
+                    if (this.state.chosenDates.length === 0) {
+                        for (var i = 1; i <= num; i++) {
+                            dates.push(i);
+                        }
+                    } else {
+                        for (var i = this.state.chosenDates[0]; i <= num; i++) {
+                            dates.push(i);
+                        }
+                    }
+                    this.setState({chosenDates: dates});
                 } else {
-                    this.props.populateDate('checkIn', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
+                    this.setState({chosenDates: [Number(dateSelected)]});
+                    this.props.populateDate('checkIn', dateSelected, checkOutMonth, currentYear);
                     this.props.populateDate('checkOut');
                 }
             } else {
-                this.props.populateDate('checkIn', e.target.innerText, this.months.indexOf(this.state.month) + 1, this.state.year);
+                this.setState({chosenDates: [Number(dateSelected)]});
+                this.props.populateDate('checkIn', dateSelected, checkOutMonth, currentYear);
                 this.props.populateDate('checkOut');
             }
         }  
