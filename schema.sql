@@ -14,9 +14,9 @@ CREATE TABLE bookings (
   endYear int NOT NULL,
   duration int NOT NULL,
   listingID int NOT NULL REFERENCES listing (id),
-  adults int NOT NULL,
-  children int NOT NULL,
-  infants int NOT NULL,
+  adults int,
+  children int,
+  infants int,
   userID int,
   PRIMARY KEY (id)
 );

@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3010;
-const db = require('../database/index.js')
+const db = require('../database/index.js');
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -25,3 +28,12 @@ app.get('/:listingID/bookings', (req, res) => {
     res.status(200).json(JSON.stringify(data));
   })
 })
+
+app.post('/:listingID/bookings', (req, res) => {
+  db.postBooking(req.params.listingID, req.body, (err, data) => {
+    if(err) {
+      res.status(500).end();
+    }
+    res.status(201).end();
+  })
+});

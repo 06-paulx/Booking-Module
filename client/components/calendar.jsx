@@ -200,7 +200,7 @@ export default class Calendar extends React.Component {
                         <svg style ={{height: '19px', width: '19px'}} viewBox="0 0 1000 1000"><path d={this.rightArrow}></path></svg>
                     </button>
                 </div>
-                <div className = 'grid' style = {{margin: '12px 10px'}}>
+                <div className = 'grid' style = {{margin: '12px 24px'}}>
                     {['Su', 'Mo', 'Tu', 'We', 'Th' ,'Fr', 'Sa'].map((item, index) => {
                         return (
                             <div key = {index} style = {{marginTop: '10px'}}>

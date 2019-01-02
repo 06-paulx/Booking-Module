@@ -1,7 +1,24 @@
+p {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.75em !important;
+    color: #484848 !important;
+}
+
 .arrow {
     height: 24px; 
     width: 24px; 
     display: block;
+}
+
+.availability {
+    font-size: 36px !important;
+    line-height: 40px !important;
+    font-weight: 800 !important;
+    max-width: 1080px !important;
+    margin: 0 auto;
+    padding: 48px 0;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 }
 
 #block {
@@ -19,6 +36,7 @@
 }
 
 .book-button {
+    height: 40px;
     background-color: #A61D55;
     color: white;
     padding: 15px 60px;
@@ -30,6 +48,10 @@
 
 #booking-container {
     padding: 24px;
+}
+
+.border-top {
+    border-top: 1px solid rgb(235, 235, 235) !important;
 }
 
 .bottom-text {
@@ -63,11 +85,25 @@
 .calendar-block {
     position: absolute;
     background-color: rgb(255, 255, 255);
-    width: 328px;
+    width: 302px;
     height: 346px;
     box-shadow: rgba(0,0,0,.2) 0px 1px 10px 0px;
     margin: 12px 0 0 0;
     z-index: 1;
+}
+
+.calendar-button {
+    color: #A61D55;
+    background: white;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    padding: 0;
+}
+
+.calendar-button:hover {
+    text-decoration: underline;
 }
 
 .calendar-item {
@@ -76,6 +112,49 @@
     background-color: white;
     border: none;
     font-size: 14px;
+}
+
+.calendar-item:hover {
+    background-color: rgba(200,200,200,.7);
+}
+
+.cancellation-exit {
+    font-size: 24px;
+    background-color: white;
+    border: none;
+    margin: 16px 12px 12px 12px;
+}
+
+.cancellation-flexbox {
+    display: flex;
+}
+
+.cancellation-label {
+    min-width: 33%;
+    min-width: 33.333%;
+    padding-left: 8.333%;
+}
+
+.cancellation-text {
+    max-width: 50%;
+}
+
+.cancellation-policy {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+}
+
+.cancellation-policy-text {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: auto !important;
+    padding: 64px 40px 0 40px;
+    max-width: 100% !important;
 }
 
 .center-align {
@@ -132,13 +211,21 @@
     display: flex;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
+.footer-buttons {
+    border-radius: 3px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgb(242, 242, 242) !important;
+    padding: 8px 12px !important;
+    background-color: white;
+    margin-right: 12px;
+}
+
+.footer-price {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: rgba(100,100,100,.4);
+    padding: 10px 0 0 26px;
 }
 
 .grey {
@@ -201,6 +288,20 @@
     text-align: left;
 }
 
+.list-header {
+    font-weight: 800 !important;
+    line-height: 1.2857142857142858em !important;
+    color: #484848 !important;
+    padding-bottom: 14px;
+}
+
+.list-item {
+    margin-bottom: 4px;
+    font-weight: 600 !important;
+    line-height: 1.2857142857142858em !important;
+    color: #767676 !important;
+}
+
 .margin-top {
     margin-top: 22px;
 }
@@ -209,6 +310,18 @@
     border: 1px solid rgb(51, 218, 205);
     color: rgb(255, 255, 255);
     background: rgb(102, 226, 218);
+}
+
+.new-button {
+    border-radius: 4px;
+    background-color: rgb(0, 106, 112) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: transparent !important;
+    color: white;
+    font-size: 12px !important;
+    padding: 2px 3px;
+    line-height: 1.33333em !important;
 }
 
 .night {
@@ -221,16 +334,39 @@
     margin: 0px !important;
 }
 
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 .opaque {
     opacity: .3;
 }
 
 .padded-footer {
-    padding-top: 15px !important;
-    padding-bottom: 39px !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    color: #767676 !important;
+    height: 44px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 11px !important;
+    padding-bottom: 31px !important;
     margin-bottom: -24px !important;
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.14) !important;
+    background-color: white;
 }
+
+.paul-x {
+    width: 82px;
+    font-family: 'Rouge Script', cursive;
+    font-size: 28px;
+    margin: 0px 24px 0 32px;
+    color: #A61D55;
+}   
 
 .popup-book-button {
     margin-top: 20px;
@@ -283,9 +419,7 @@
 
 .spacer {
     margin-top: 20px;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-color: rgb(235, 235, 235) !important;
+    border-bottom: 1px solid rgb(235, 235, 235) !important;
 }
 
 .stars {
@@ -294,4 +428,55 @@
     display: block;
     fill: #A61D55;
     font-size: 10px;
+}
+
+.styled-footer {
+    max-width: 1080px !important;
+    margin: 0 auto;
+}
+
+.styled-footer-list {
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #767676 !important;
+    font-size: 14px;
+    padding: 32px 24px 24px 24px;
+    max-width: 1080px !important;
+    margin: 0 auto;
+}
+
+.styled-price-type {
+    padding-top: 24px;
+    margin-bottom: 100px;
+}
+
+.unstyled-list {
+    padding: 0 0 0 14px;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) { 
+    .adjusted-flex-type {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .availability {
+        font-size: 24px !important;
+        line-height: 30px !important;
+    }
+    .cancellation-flexbox {
+        display: block;
+    }
+    .cancellation-label {
+        padding-left: 0;
+        padding-bottom: 20px;
+    }
+    .cancellation-text {
+        max-width: 100%;
+    }
+    .footer-hide-section { 
+        display: none; 
+    } 
+    .styled-footer-list {
+        display: none;
+    }
 }

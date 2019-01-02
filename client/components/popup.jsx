@@ -18,11 +18,11 @@ export default class Popup extends React.Component {
             pricing: [],
             priceCalculatorShow: 'none',
         }
-        this.star = "M971.5 379.5c9 28 2 50-20 67L725.4 618.6l87 280.1c11 39-18 75-54 75-12 0-23-4-33-12l-226.1-172-226.1 172.1c-25 17-59 12-78-12-12-16-15-33-8-51l86-278.1L46.1 446.5c-21-17-28-39-19-67 8-24 29-40 52-40h280.1l87-278.1c7-23 28-39 52-39 25 0 47 17 54 41l87 276.1h280.1c23.2 0 44.2 16 52.2 40z";
         this.arrow = "m0 12.5a.5.5 0 0 0 .5.5h21.79l-6.15 6.15a.5.5 0 1 0 .71.71l7-7v-.01a.5.5 0 0 0 .14-.35.5.5 0 0 0 -.14-.35v-.01l-7-7a .5.5 0 0 0 -.71.71l6.15 6.15h-21.79a.5.5 0 0 0 -.5.5z"
         this.populateDate = this.populateDate.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleCalendarClick = this.handleCalendarClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.updateNumGuests = this.updateNumGuests.bind(this);
     }
 
@@ -72,6 +72,30 @@ export default class Popup extends React.Component {
         }
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        var checkIn = e.target.checkin.value.split('/');
+        var checkOut = e.target.checkout.value.split('/');
+        if (this.state.checkIn === '' || this.state.checkOut === '') {
+            this.handleCalendarClick(e);
+        } else {
+            fetch(`http://localhost:3010/${this.props.id}/bookings`, {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                'startDay': checkIn[1],
+                'startMonth': checkIn[0],
+                'startYear': checkIn[2],
+                'endDay': checkOut[1],
+                'endMonth': checkOut[0],
+                'endYear': checkOut[2],
+                'duration': this.state.daysBooked,
+                'userID': 1
+            })})
+            .then(response => this.props.minimizePopUp());
+        }
+    }
+
     populateDate(status, day, month, year, numDays) {
         if(arguments.length === 0) {
             this.setState({checkIn: '', checkOut: '', daysBooked: 0, priceCalculatorShow: 'none'})
@@ -109,14 +133,14 @@ export default class Popup extends React.Component {
         return (
         <div id = 'block'>
             <div id = 'booking-container'>
-                <button className = 'exit-button' onClick = {this.props.handleExit}>X</button>
+                <button className = 'exit-button' onClick = {this.props.minimizePopUp}>X</button>
                 <span className = 'price'>${this.props.state.price}</span><span className = 'night'> /NIGHT</span>
                 <div className = 'flexbox'>
                     {[...Array(5)].map((stars, index) => {
                         if (index < this.props.state.rating) {
-                            return <span key={index}><svg viewBox="0 0 1000 1000" className = 'stars'><path d={this.star}></path></svg></span>
+                            return <span key={index}><svg viewBox="0 0 1000 1000" className = 'stars'><path d={this.props.star}></path></svg></span>
                         }
-                        return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'stars'><path d={this.star}></path></svg></span>
+                        return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'stars'><path d={this.props.star}></path></svg></span>
                     })}
                     <span className = 'review-count'>{this.props.state.reviewCount}</span>
                 </div>
