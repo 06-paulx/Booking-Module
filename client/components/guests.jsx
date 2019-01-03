@@ -37,34 +37,34 @@ export default class Guests extends React.Component {
 
     render() {
         return (
-            <div className = 'guests-block'>
-                <div className = 'guests-block-info'>
-                    <div className = 'flexbox space-around margin-top guest-type'>
-                        <div className = 'label'>Adults</div>
-                        <button className = {'circle ' + (this.state.adults === 1 ? 'opaque' : '')}  data='adults' onClick = {this.handleNumGuestsClick}>-</button>
-                        <div className = 'sign'>{this.state.adults}</div>
-                        <button className = 'circle' data='adults' onClick = {this.handleNumGuestsClick}>+</button>
+            <div className = 'george-guests-block'>
+                <div className = 'george-guests-block-info'>
+                    <div className = 'george-flexbox george-space-around george-margin-top george-guest-type'>
+                        <div className = 'george-label'>Adults</div>
+                        <button className = {'george-circle ' + (this.state.adults === 1 ? 'opaque' : '')}  data='adults' onClick = {this.handleNumGuestsClick}>-</button>
+                        <div className = 'george-sign'>{this.state.adults}</div>
+                        <button className = 'george-circle' data='adults' onClick = {this.handleNumGuestsClick}>+</button>
                     </div>
-                    <div className = 'flexbox space-around margin-top guest-type'>
-                        <div className = 'label'>
+                    <div className = 'george-flexbox george-space-around george-margin-top george-guest-type'>
+                        <div className = 'george-label'>
                             <div>Children</div>
                             <div style={{fontSize: '14px', fontWeight: 'normal'}}>Ages 2-12</div>
                         </div>
-                        <button className = {'circle ' + (this.state.children === 0 ? 'opaque' : '')} data='children' onClick = {this.handleNumGuestsClick}>-</button>
-                        <div className = 'sign'>{this.state.children}</div>
-                        <button className = 'circle' data='children' onClick = {this.handleNumGuestsClick}>+</button>
+                        <button className = {'george-circle ' + (this.state.children === 0 ? 'george-opaque' : '')} data='children' onClick = {this.handleNumGuestsClick}>-</button>
+                        <div className = 'george-sign'>{this.state.children}</div>
+                        <button className = 'george-circle' data='children' onClick = {this.handleNumGuestsClick}>+</button>
                     </div>
-                    <div className = 'flexbox space-around margin-top guest-type'>
-                        <div className = 'label'>
+                    <div className = 'george-flexbox george-space-around george-margin-top george-guest-type'>
+                        <div className = 'george-label'>
                             <div>Infants</div>
                             <div style={{fontSize: '14px', fontWeight: 'normal'}}>Under 2</div>
                         </div>
-                        <button className = {'circle ' + (this.state.infants === 0 ? 'opaque' : '')} data='infants' onClick = {this.handleNumGuestsClick} >-</button>
-                        <div className = 'sign'>{this.state.infants}</div>
-                        <button className = {'circle ' + (this.state.infants === 5 ? 'opaque' : '')} data='infants' onClick = {this.handleNumGuestsClick}>+</button>
+                        <button className = {'george-circle ' + (this.state.infants === 0 ? 'george-opaque' : '')} data='infants' onClick = {this.handleNumGuestsClick} >-</button>
+                        <div className = 'george-sign'>{this.state.infants}</div>
+                        <button className = {'george-circle ' + (this.state.infants === 5 ? 'george-opaque' : '')} data='infants' onClick = {this.handleNumGuestsClick}>+</button>
                     </div>
-                    <div className = 'right-align'>
-                        <button style = {{marginRight: '10px'}} onClick = {this.props.handleClick} className = 'margin-top button-close'>Close</button>
+                    <div className = 'george-right-align'>
+                        <button style = {{marginRight: '10px'}} onClick = {this.props.handleClick} className = 'george-margin-top george-button-close'>Close</button>
                     </div>
                 </div>
             </div>

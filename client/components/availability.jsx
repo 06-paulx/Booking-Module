@@ -35,7 +35,7 @@ export default class Availability extends React.Component {
     }
 
     handleButtonClick() {
-        var cal = document.getElementById('block');
+        var cal = document.getElementById('george-block');
         if (this.state.popup === '' && !document.contains(cal)) {
             this.setState({popup: <Popup id = {this.props.id} state = {this.state} star = {this.star} minimizePopUp = {this.minimizePopUp} handleExit = {this.handleExit}/>})
         }
@@ -68,15 +68,15 @@ export default class Availability extends React.Component {
         return (
             <div>
                 {this.state.popup}
-                <div className = 'availability border-top'>
+                <div className = 'george-availability george-border-top'>
                     <div style = {{marginBottom: '32px'}}>
                         Availability
                     </div>
                     <div>
-                        <button className = 'calendar-button' onClick = {this.handleButtonClick}>Show calendar</button>
+                        <button className = 'george-calendar-button' onClick = {this.handleButtonClick}>Show calendar</button>
                     </div>
                 </div>
-                <div className = 'availability border-top'>
+                <div className = 'george-availability george-border-top'>
                     <div style = {{marginBottom: '32px'}}>
                         Cancellation Policy and House Rules
                     </div>
@@ -86,7 +86,7 @@ export default class Availability extends React.Component {
                         </p>   
                     </div>
                     <div>
-                        <button className = 'calendar-button' onClick = {this.toggleCancellation}>Read all policies and house rules</button>
+                        <button className = 'george-calendar-button' onClick = {this.toggleCancellation}>Read all policies and house rules</button>
                     </div>
                     <div style = {{display: this.state.cancellationPolicy}}>
                         <CancellationPolicy toggleCancellation = {this.toggleCancellation}/>
