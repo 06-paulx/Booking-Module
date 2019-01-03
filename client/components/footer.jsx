@@ -10,63 +10,63 @@ export default class Footer extends React.Component {
 
     render() {  
         return (
-            <div className = 'styled-footer'>
-                <div className = 'flexbox space-between styled-footer-list border-top'>
+            <div className = 'george-styled-footer'>
+                <div className = 'george-flexbox george-space-between george-styled-footer-list george-border-top'>
                     <div>
-                        <ul className = 'no-bullets'>
-                            <li className = 'list-header'>Airbnb</li>
-                            <li className = 'list-item'>Careers</li>
-                            <li className = 'list-item'>Press</li>
-                            <li className = 'list-item'>Policies</li>
-                            <li className = 'list-item'>Help</li>
-                            <li className = 'list-item'>Diversity & Belonging</li>
+                        <ul className = 'george-no-bullets'>
+                            <li className = 'george-list-header'>Airbnb</li>
+                            <li className = 'george-list-item'>Careers</li>
+                            <li className = 'george-list-item'>Press</li>
+                            <li className = 'george-list-item'>Policies</li>
+                            <li className = 'george-list-item'>Help</li>
+                            <li className = 'george-list-item'>Diversity & Belonging</li>
                         </ul>                  
                     </div>
                     <div>
-                        <ul className = 'no-bullets'>
-                            <li className = 'list-header'>Discover</li>
-                            <li className = 'list-item'>Trust & Safety</li>
-                            <li className = 'list-item'>Invite Friends</li>
-                            <li className = 'list-item'>Gift Cards</li>
-                            <li className = 'list-item'>Airbnb Citizen</li>
-                            <li className = 'list-item'>Business Travel</li>
-                            <li className = 'list-item'>Guidebooks</li>
-                            <li className = 'list-item'>Airbnbmag</li>
-                            <li className = 'list-item'>Events <span className = 'new-button'>New</span></li>
+                        <ul className = 'george-no-bullets'>
+                            <li className = 'george-list-header'>Discover</li>
+                            <li className = 'george-list-item'>Trust & Safety</li>
+                            <li className = 'george-list-item'>Invite Friends</li>
+                            <li className = 'george-list-item'>Gift Cards</li>
+                            <li className = 'george-list-item'>Airbnb Citizen</li>
+                            <li className = 'george-list-item'>Business Travel</li>
+                            <li className = 'george-list-item'>Guidebooks</li>
+                            <li className = 'george-list-item'>Airbnbmag</li>
+                            <li className = 'george-list-item'>Events <span className = 'george-new-button'>New</span></li>
                         </ul>     
                     </div>
                     <div>
-                        <ul className = 'no-bullets'>
-                            <li className = 'list-header'>Hosting</li>
-                            <li className = 'list-item'>Why Host</li>
-                            <li className = 'list-item'>Refer Hosts</li>
-                            <li className = 'list-item'>Hospitality</li>
-                            <li className = 'list-item'>Reponsible Hosting</li>
-                            <li className = 'list-item'>Community Center</li>
-                            <li className = 'list-item'>Host an Experience <span className = 'new-button'>New</span></li>
-                            <li className = 'list-item'>Open Homes <span className = 'new-button'>New</span></li>
+                        <ul className = 'george-no-bullets'>
+                            <li className = 'george-list-header'>Hosting</li>
+                            <li className = 'george-list-item'>Why Host</li>
+                            <li className = 'george-list-item'>Refer Hosts</li>
+                            <li className = 'george-list-item'>Hospitality</li>
+                            <li className = 'george-list-item'>Reponsible Hosting</li>
+                            <li className = 'george-list-item'>Community Center</li>
+                            <li className = 'george-list-item'>Host an Experience <span className = 'george-new-button'>New</span></li>
+                            <li className = 'george-list-item'>Open Homes <span className = 'george-new-button'>New</span></li>
                         </ul>     
                     </div>
                     <div>
-                        <ul className = 'no-bullets'>
-                            <li className = 'list-header'>
-                                <div className ='flexbox space-between'>
+                        <ul className = 'george-no-bullets'>
+                            <li className = 'george-list-header'>
+                                <div className = 'george-flexbox george-space-between'>
                                     <a href="https://www.facebook.com/airbnb" target = "_blank"><i className="fab fa-facebook-f"></i></a>
                                     <a href="https://twitter.com/airbnb"  target = "_blank"><i className="fab fa-twitter"></i></a>
                                     <a href="https://www.instagram.com/airbnb/" target = "_blank"><i className="fab fa-instagram"></i></a>
                                 </div>
                             </li>
-                            <li className = 'list-item'>Terms</li>
-                            <li className = 'list-item'>Privary</li>
-                            <li className = 'list-item'>Site Map</li>
+                            <li className = 'george-list-item'>Terms</li>
+                            <li className = 'george-list-item'>Privary</li>
+                            <li className = 'george-list-item'>Site Map</li>
                         </ul>     
                     </div>
                 </div>
-                <div className = 'flexbox space-between styled-price-type border-top'>
-                    <div className = 'paul-x'>paul-X</div>
+                <div className = 'george-flexbox george-space-between george-styled-price-type george-border-top'>
+                    <div className = 'george-paul-x'>paul-X</div>
                     <div>
-                        <button className = 'footer-buttons'>English</button>
-                        <button className = 'footer-buttons'>USD - $</button>
+                        <button className = 'george-footer-buttons'>English</button>
+                        <button className = 'george-footer-buttons'>USD - $</button>
                     </div>
                 </div>
             </div>

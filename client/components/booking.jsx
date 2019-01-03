@@ -25,7 +25,7 @@ export default class Booking extends React.Component {
   }
 
   handleButtonClick() {
-    var cal = document.getElementById('block');
+    var cal = document.getElementById('george-block');
     if (this.state.popup === '' && !document.contains(cal)) {
       this.setState({popup: <Popup id = {this.props.id} state = {this.state} star = {this.star} minimizePopUp = {this.minimizePopUp} handleExit = {this.handleExit}/>})
     }
@@ -58,32 +58,32 @@ export default class Booking extends React.Component {
     return (
       <div>
         {this.state.popup} 
-        <div className = 'padded-footer flexbox space-between'>
-          <div className = 'flexbox footer-hide-section'>
-            <div className = 'paul-x'>
+        <div className = 'george-padded-footer george-flexbox george-space-between'>
+          <div className = 'george-flexbox george-footer-hide-section'>
+            <div className = 'george-paul-x'>
               paul-X
             </div>
             <div>
               <div style = {{paddingBottom: '5px'}}>
                 Entire Apartment in San Francisco
               </div>
-              <div className = 'flexbox'>
+              <div className = 'george-flexbox'>
                 {[...Array(5)].map((stars, index) => {
                     if (index < this.state.rating) {
-                        return <span key={index}><svg viewBox="0 0 1000 1000" className = 'stars'><path d={this.star}></path></svg></span>
+                        return <span key={index}><svg viewBox="0 0 1000 1000" className = 'george-stars'><path d={this.star}></path></svg></span>
                     }
-                    return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'stars'><path d={this.star}></path></svg></span>
+                    return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'george-stars'><path d={this.star}></path></svg></span>
                 })}
-                <span className = 'review-count'>{this.state.reviewCount}</span>
+                <span className = 'george-review-count'>{this.state.reviewCount}</span>
               </div>
             </div>
           </div>
-          <div className = 'flexbox adjusted-flex-type'>   
-            <div className = 'footer-price'>
-              <span className = 'price'>${this.state.price}</span><span className = 'night'> /NIGHT</span>
+          <div className = 'george-flexbox adjusted-flex-type'>   
+            <div className = 'george-footer-price'>
+              <span className = 'george-price'>${this.state.price}</span><span className = 'george-night'> /NIGHT</span>
             </div>
             <div style = {{padding: '0 36px'}}>
-              <button className = 'book-button' onClick = {this.handleButtonClick}>BOOK</button> 
+              <button className = 'george-book-button' onClick = {this.handleButtonClick}>BOOK</button> 
             </div>
           </div>
         </div>

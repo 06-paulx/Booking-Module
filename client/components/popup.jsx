@@ -131,71 +131,71 @@ export default class Popup extends React.Component {
 
     render() {
         return (
-        <div id = 'block'>
-            <div id = 'booking-container'>
-                <button className = 'exit-button' onClick = {this.props.minimizePopUp}>X</button>
-                <span className = 'price'>${this.props.state.price}</span><span className = 'night'> /NIGHT</span>
-                <div className = 'flexbox'>
+        <div id = 'george-block'>
+            <div id = 'george-booking-container'>
+                <button className = 'george-exit-button' onClick = {this.props.minimizePopUp}>X</button>
+                <span className = 'george-price'>${this.props.state.price}</span><span className = 'george-night'> /NIGHT</span>
+                <div className = 'george-flexbox'>
                     {[...Array(5)].map((stars, index) => {
                         if (index < this.props.state.rating) {
-                            return <span key={index}><svg viewBox="0 0 1000 1000" className = 'stars'><path d={this.props.star}></path></svg></span>
+                            return <span key={index}><svg viewBox="0 0 1000 1000" className = 'george-stars'><path d={this.props.star}></path></svg></span>
                         }
-                        return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'stars'><path d={this.props.star}></path></svg></span>
+                        return <span key={index}><svg style = {{fill: "black"}} viewBox="0 0 1000 1000" className = 'george-stars'><path d={this.props.star}></path></svg></span>
                     })}
-                    <span className = 'review-count'>{this.props.state.reviewCount}</span>
+                    <span className = 'george-review-count'>{this.props.state.reviewCount}</span>
                 </div>
-                <div className = 'spacer'></div>
-                <div className = 'margin-top popup-label'>Dates</div>
+                <div className = 'george-spacer'></div>
+                <div className = 'george-margin-top george-popup-label'>Dates</div>
                 <form onSubmit = {this.handleSubmit}>
-                    <div className = 'flexbox space-around dates-input' id = 'dates-input'>
-                        <input value = {this.state.checkIn} onClick = {this.handleCalendarClick} className = 'check-in' name = 'checkin' type="text" placeholder = 'Check In'/>
-                        <div style={{margin: '0 5px', paddingTop: '3px'}}><svg className = 'arrow' viewBox="0 0 24 24"><path d={this.arrow} fillRule="evenodd"></path></svg></div>
-                        <input value = {this.state.checkOut} onClick = {this.handleCalendarClick} className = 'check-in' name = 'checkout' type="text" placeholder = 'Check Out'/>
+                    <div className = 'george-flexbox george-space-around george-dates-input' id = 'dates-input'>
+                        <input value = {this.state.checkIn} onClick = {this.handleCalendarClick} className = 'george-check-in' name = 'checkin' type="text" placeholder = 'Check In'/>
+                        <div style={{margin: '0 5px', paddingTop: '3px'}}><svg className = 'george-arrow' viewBox="0 0 24 24"><path d={this.arrow} fillRule="evenodd"></path></svg></div>
+                        <input value = {this.state.checkOut} onClick = {this.handleCalendarClick} className = 'george-check-in' name = 'checkout' type="text" placeholder = 'Check Out'/>
                     </div>
                     <div style = {{display: this.state.calendarShow}} id = 'calendar'>
                         <Calendar checkOut = {this.state.checkOut} checkIn = {this.state.checkIn} id = {this.props.id} populateDate = {this.populateDate}/>
                     </div>
-                    <div className = 'margin-top popup-label'>Guests</div>
-                    <div  id = 'guests-input' style = {{position: 'relative'}}><input value = {this.state.numGuests} onClick = {this.handleClick} className = 'guests' type="text" name = 'guests' placeholder = '1 Guest'/>
+                    <div className = 'george-margin-top george-popup-label'>Guests</div>
+                    <div  id = 'guests-input' style = {{position: 'relative'}}><input value = {this.state.numGuests} onClick = {this.handleClick} className = 'george-guests' type="text" name = 'guests' placeholder = '1 Guest'/>
                         <div style = {{display: this.state.guestShow}}>
                             <Guests updateNumGuests = {this.updateNumGuests} handleClick = {this.handleClick} state = {this.state}/>
                         </div>
                     </div>
-                    <div style = {{display: this.state.priceCalculatorShow, marginTop: '20px'}}>
-                        <div className = 'flexbox space-between pricing'>
-                            <div className = 'left-align'>
+                    <div style = {{display: this.state.priceCalculatorShow, margin: '20px 0'}}>
+                        <div className = 'george-flexbox george-space-between george-pricing'>
+                            <div className = 'george-left-align'>
                                 ${this.props.state.price} x {this.state.daysBooked} night{this.state.daysBooked > 1 ? 's' : ''}
                             </div>
-                            <div className = 'right-align'>${this.state.pricing[0]}</div>
+                            <div className = 'george-right-align'>${this.state.pricing[0]}</div>
                         </div>
-                        <div className = 'flexbox space-between pricing'>
-                            <div className = 'left-align'>
+                        <div className = 'george-flexbox george-space-between george-pricing'>
+                            <div className = 'george-left-align'>
                                 Cleaning fee 
                             </div>
-                            <div className = 'right-align'>${this.state.pricing[1]}</div>
+                            <div className = 'george-right-align'>${this.state.pricing[1]}</div>
                         </div>
-                        <div className = 'flexbox space-between pricing'>
-                            <div className = 'left-align'>
+                        <div className = 'george-flexbox george-space-between george-pricing'>
+                            <div className = 'george-left-align'>
                                 Service fee 
                             </div>
-                            <div className = 'right-align'>${this.state.pricing[2]}</div>
+                            <div className = 'george-right-align'>${this.state.pricing[2]}</div>
                         </div>
-                        <div className = 'flexbox space-between pricing'>
-                            <div className = 'left-align'>
+                        <div className = 'george-flexbox george-space-between george-pricing'>
+                            <div className = 'george-left-align'>
                                 Occupancy taxes and fees 
                             </div>
-                            <div className = 'right-align'>${this.state.pricing[3]}</div>
+                            <div className = 'george-right-align'>${this.state.pricing[3]}</div>
                         </div>
-                        <div className = 'flexbox space-between pricing' style = {{borderBottomStyle: 'none', fontWeight: 'bold'}}>
-                            <div className = 'left-align'>
+                        <div className = 'george-flexbox george-space-between george-pricing' style = {{borderBottomStyle: 'none', fontWeight: 'bold'}}>
+                            <div className = 'george-left-align'>
                                 Total 
                             </div>
-                            <div className = 'right-align'>${this.state.pricing[4]}</div>
+                            <div className = 'george-right-align'>${this.state.pricing[4]}</div>
                         </div>
                     </div>
-                    <div className = 'popup-book-button center-align'><button style = {{width: '100%'}} className = 'book-button'>BOOK</button></div>
+                    <div className = 'george-popup-book-button george-center-align'><button style = {{width: '100%'}} className = 'george-book-button'>BOOK</button></div>
                 </form>
-                <div className = 'margin-top center-align bottom-text'>You won't be charged yet</div>
+                <div className = 'george-margin-top george-center-align george-bottom-text'>You won't be charged yet</div>
             </div>
         </div>
         );
