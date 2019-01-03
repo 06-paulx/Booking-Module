@@ -188,19 +188,19 @@ export default class Calendar extends React.Component {
 
     render() {
         return (
-            <div className = 'calendar-block'>
-                <div className = 'flexbox space-around' style={{marginTop: '17px'}}>
-                    <button className = 'button-calendar-arrow' onClick = {this.leftArrowClick}>
+            <div className = 'george-calendar-block'>
+                <div className = 'george-flexbox george-space-around' style={{marginTop: '17px'}}>
+                    <button className = 'george-button-calendar-arrow' onClick = {this.leftArrowClick}>
                         <svg style ={{height: '19px', width: '19px'}} viewBox="0 0 1000 1000"><path d={this.leftArrow}></path></svg>
                     </button>
                     <div style = {{paddingTop: '10px'}}>
                         {this.state.month + ' ' + this.state.year}
                     </div>
-                    <button className = 'button-calendar-arrow' onClick = {this.rightArrowClick}>
+                    <button className = 'george-button-calendar-arrow' onClick = {this.rightArrowClick}>
                         <svg style ={{height: '19px', width: '19px'}} viewBox="0 0 1000 1000"><path d={this.rightArrow}></path></svg>
                     </button>
                 </div>
-                <div className = 'grid' style = {{margin: '12px 24px'}}>
+                <div className = 'george-grid' style = {{margin: '12px 24px'}}>
                     {['Su', 'Mo', 'Tu', 'We', 'Th' ,'Fr', 'Sa'].map((item, index) => {
                         return (
                             <div key = {index} style = {{marginTop: '10px'}}>
@@ -212,8 +212,8 @@ export default class Calendar extends React.Component {
                         return (<CalendarDate chosenDates = {this.state.chosenDates} daysAvailable = {this.state.daysAvailable} key = {index} number = {index - this.state.start + 1} days = {this.state.days} populateDate = {this.populateDate}/>)
                     })}               
                 </div>
-                <div className = 'right-align' style = {{marginRight: '10px'}}>
-                    <button onClick = {this.populateDate} className = 'button-close'>Clear dates</button>
+                <div className = 'george-right-align' style = {{marginRight: '10px'}}>
+                    <button onClick = {this.populateDate} className = 'george-button-close'>Clear dates</button>
                 </div>
             </div>
         );

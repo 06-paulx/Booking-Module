@@ -24,13 +24,13 @@ export default class CalendarDate extends React.Component {
 
   render() {
     return (
-        <div className = 'grid-item'>
+        <div className = 'george-grid-item'>
             {this.isAvailable() ? 
-            <button className = {'calendar-item bold ' + (this.isSelected() ? 'chosen ' : '') + (this.isMiddle() ? 'middle' : '')} onClick = {this.props.populateDate}>
+            <button className = {'george-calendar-item george-bold ' + (this.isSelected() ? 'george-chosen ' : '') + (this.isMiddle() ? 'george-middle' : '')} onClick = {this.props.populateDate}>
                 {this.props.number > 0 && this.props.number <= this.props.days ? this.props.number : ''}
             </button>
             :
-            <button className = {'calendar-item grey '} onClick = {this.badDay}>
+            <button className = {'george-calendar-item george-grey '} onClick = {this.badDay}>
                 {this.props.number > 0 && this.props.number <= this.props.days ? this.props.number : ''}
             </button>
             }
