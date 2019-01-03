@@ -198,10 +198,13 @@ p {
     border-radius: 2px !important;
 }
 
+<<<<<<< HEAD
 .george-description {
     width: 85.333333%;
 }
 
+=======
+>>>>>>> 902e0fca902b64f99524654fefc8b1de85b30a3d
 .george-exit-button {
     margin-bottom: 20px;
     height: 16px;
@@ -283,6 +286,7 @@ p {
     padding: 0;
 }
 
+<<<<<<< HEAD
 .george-housing-rooms {
     font-weight: bold;
     margin-top: 1em;
@@ -297,6 +301,8 @@ p {
     margin-left: 1em;
 }
 
+=======
+>>>>>>> 902e0fca902b64f99524654fefc8b1de85b30a3d
 .george-label {
     font-weight: bold;
     text-align: left;
@@ -322,6 +328,7 @@ p {
     color: #767676 !important;
 }
 
+<<<<<<< HEAD
 .george-listing-description {
     max-width: 1080px;
     margin: 64px auto;
@@ -332,6 +339,8 @@ p {
     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 }
 
+=======
+>>>>>>> 902e0fca902b64f99524654fefc8b1de85b30a3d
 .george-margin-top {
     margin-top: 22px;
 }
