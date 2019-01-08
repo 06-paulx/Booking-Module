@@ -31,7 +31,7 @@ export default class Calendar extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3010/${this.props.id}/bookings`, {
+        fetch(`http://18.219.50.56/${this.props.id}/bookings`, {
         method: 'GET',
         headers: {'content-type': 'application/json'}})
         .then(response => response.json())

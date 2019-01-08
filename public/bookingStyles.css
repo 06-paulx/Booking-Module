@@ -169,6 +169,7 @@ p {
     height: 26px;
     border: none;
     font-size: 15px;
+    margin: 0;
 }
 
 .george-chosen {

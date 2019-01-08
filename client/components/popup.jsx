@@ -79,7 +79,7 @@ export default class Popup extends React.Component {
         if (this.state.checkIn === '' || this.state.checkOut === '') {
             this.handleCalendarClick(e);
         } else {
-            fetch(`http://localhost:3010/${this.props.id}/bookings`, {
+            fetch(`http://18.219.50.56/${this.props.id}/bookings`, {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({

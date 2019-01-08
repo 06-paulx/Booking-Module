@@ -51,7 +51,7 @@ export default class Availability extends React.Component {
     }
 
     updateListings() {
-        fetch(`http://localhost:3010/${this.props.id}/listings`, {
+        fetch(`http://18.219.50.56/${this.props.id}/listings`, {
             method: 'GET',
             headers: {
             'content-type': 'application/json'

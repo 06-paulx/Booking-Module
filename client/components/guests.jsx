@@ -41,7 +41,7 @@ export default class Guests extends React.Component {
                 <div className = 'george-guests-block-info'>
                     <div className = 'george-flexbox george-space-around george-margin-top george-guest-type'>
                         <div className = 'george-label'>Adults</div>
-                        <button className = {'george-circle ' + (this.state.adults === 1 ? 'opaque' : '')}  data='adults' onClick = {this.handleNumGuestsClick}>-</button>
+                        <button className = {'george-circle ' + (this.state.adults === 1 ? 'george-opaque' : '')}  data='adults' onClick = {this.handleNumGuestsClick}>-</button>
                         <div className = 'george-sign'>{this.state.adults}</div>
                         <button className = 'george-circle' data='adults' onClick = {this.handleNumGuestsClick}>+</button>
                     </div>
