@@ -1,13 +1,14 @@
 # Project Name
 
-> Project description
+> Lazy-Lodgings Booking Module
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/06-paulx/Location_map
+  - https://github.com/06-paulx/tour_of_listing
+  - https://github.com/06-paulx/Reviews
+  - https://github.com/06-paulx/Amenities
+  - https://github.com/06-paulx/Header
 
 ## Table of Contents
 
